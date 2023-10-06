@@ -3,6 +3,7 @@ package hello.hellospring.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloController {
@@ -11,5 +12,11 @@ public class HelloController {
         model.addAttribute("data", "spring!"); //키와 값 세팅
         return "hello"; //tamplates의 hello.html을 실행시켜라 (컨트롤러에서 리턴값으로 문자반환)
         // viewResolver가 화면을 처리함 `resources/templates/+{ViewName}+.html`
+    }
+
+    @GetMapping("hello-mvc")
+    public String helloMvc(@RequestParam("name") String name, Model model){
+        model.addAttribute("name", name);
+        return "hello-template";
     }
 }
